@@ -1,0 +1,19 @@
+Asymptotic Notation — what it actually means
+Big O is just a way to answer one question: as your data grows, how much slower does your code get?
+That's it. It's not about milliseconds on your laptop — it's about the shape of the slowdown. An algorithm that's O(n) doubles in work when you double the input. One that's O(log n) barely notices. One that's O(n²) gets ugly fast — double the input, quadruple the pain.
+You'll never hear "this runs in 4 seconds" in Big O talk. You'll hear "this scales linearly" or "this scales logarithmically." It's about trend, not stopwatch.
+Best, average, worst case — for search
+Every search algorithm has three personalities depending on your luck:
+Linear search — you're checking products one by one, like flipping through a stack of papers looking for one name.
+
+Best case: the thing you want is first in line O(1) Lucky day.
+Average case: it's somewhere in the middle, You check about half the list O(n).
+Worst case: it's last or not there at all, You check everything O(n).
+
+Binary search —cutting the search space in half every single step, like guessing a number between 1–100 and always asking "higher or lower?"
+
+Best case: dead center, found instantly. O(1).
+Average case: still crazy fast — O(log n).
+Worst case: same, O(log n) Even on a bad day, binary search barely sweats.
+
+for binary search — its worst case beats linear search's average case once dataset gets big.

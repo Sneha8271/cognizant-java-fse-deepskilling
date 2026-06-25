@@ -1,0 +1,18 @@
+Part 4: Analysis
+Time complexity:
+This recursive version is O(n), where n is the number of years. Here's why — to compute the value at year 5, it calls year 4, which calls year 3, which calls year 2... all the way down to year 0. That's one call per year, no branching, no repeated work. Clean, linear chain of calls.
+Space-wise, it's also O(n) — each recursive call sits on the call stack waiting for the one below it to finish, so you're holding n stack frames at once before anything returns.
+Where this gets dangerous, and how to fix it:
+O(n) recursion is fine for forecasting 5 or 50 years. But push it to forecasting, say, 50,000 periods (daily compounding over decades), and you'll blow the stack — StackOverflowError. That's the real risk with recursion: it's not slow, it's stack-hungry.
+The fix is one of two routes:
+1. Convert to iteration (the simplest fix):
+javapublic static double calculateFutureValueIterative(double initialValue, double growthRate, int years) {
+    double value = initialValue;
+    for (int i = 0; i < years; i++) {
+        value *= (1 + growthRate);
+    }
+    return value;
+}
+Same O(n) time, but O(1) space — no stack buildup at all. For something this simple (no branching, no overlapping subproblems), iteration is honestly the better real-world choice.
+2. Tail-call style / accumulator pattern (if you want to keep it recursive on principle):
+Some languages optimize "tail recursion" so it doesn't pile up the stack — but Java's compiler does not do this optimization. So in Java specifically, switching to a loop is the actual fix, not just a stylistic choice — recursion here would be the "for demonstrating recursion" version, not the "production-safe" version.

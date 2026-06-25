@@ -1,0 +1,5 @@
+Part 1: Understanding Recursion
+
+Recursion is when a function calls itself to solve a smaller version of the same problem, until it hits a point so simple it doesn't need to recurse anymore — that's your base case.
+Think of it like Russian nesting dolls. You don't need to know how to open the whole set at once — you just need to know "open one doll, and if there's a smaller doll inside, repeat." Eventually you hit the smallest doll, and that's your stopping point.
+For financial forecasting, recursion fits naturally because growth itself is recursive. Next year's value depends on this year's value. This year's depended on last year's. It's the same calculation, repeated, just shrinking the problem (the number of years left) by one each time — exactly the pattern recursion is built for.
